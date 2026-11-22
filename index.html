@@ -49,7 +49,7 @@
             <a href="#screenshots">Screenshots</a>
             <a href="#install">Install</a>
             <a href="#privacy">Privacy</a>
-            <a class="btn btn-primary btn-sm nav-dl" href="downloads/adwhere" download>
+            <a class="btn btn-primary btn-sm nav-dl" href="https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere" download>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
                 Download
             </a>
@@ -68,7 +68,7 @@
                 <h1 id="heroTitle">Find the app<br>behind the ads.<br><span class="accent">Remove it.</span></h1>
                 <p class="hero-lead">Popup ads hide in a window that is drawn above whatever you are using. ADWHERE watches the phone's window stack over ADB, shows the app on screen and records the overlay package, icon and evidence before the ad disappears. Then it removes the package you confirm.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="downloads/adwhere" download>
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere" download>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
                         Download for Linux
                     </a>
@@ -296,22 +296,21 @@
                 <p class="section-note">Download the Linux build, make it executable and attach an Android phone with USB debugging enabled. No account and no Python runtime required.</p>
             </div>
 
-            <!-- Replace USER/REPO in the curl commands with your GitHub repository. -->
             <div class="release-card reveal" aria-labelledby="releaseTitle">
                 <div class="release-main">
                     <p class="release-eyebrow"><span class="release-dot" aria-hidden="true"></span> Current release</p>
                     <h3 id="releaseTitle">ADWHERE <span id="releaseVersion">1.0.0</span> <span>for Linux x86-64</span></h3>
                     <p class="release-copy">A single native build with the live monitor, risk engine, icon cache, APK deep scanner, the original command-line helpers and its own <code>adb</code> embedded.</p>
                     <div class="release-actions">
-                        <a class="btn btn-primary" href="downloads/adwhere" download>
+                        <a class="btn btn-primary" href="https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere" download>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
                             Download 39 MB
                         </a>
-                        <a class="btn btn-ghost" href="downloads/SHA256SUMS">Checksum file</a>
+                        <a class="btn btn-ghost" href="https://github.com/0xbitx/Adwhere/releases/latest/download/SHA256SUMS">Checksum file</a>
                     </div>
                     <p class="release-curl">
                         <span>or install with curl</span>
-                        <code id="curlInstall">curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/adwhere</code>
+                        <code id="curlInstall">curl -fLO https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere</code>
                         <button class="release-hash-copy" type="button" data-copy-target="#curlInstall" data-copy-label="curl command copied" aria-label="Copy the curl command">Copy</button>
                     </p>
                 </div>
@@ -355,7 +354,7 @@
                             </div>
                         </li>
                     </ol>
-                    <p class="install-note"><strong>Verify before you run.</strong> Compare <code>sha256sum adwhere</code> with the published <a href="downloads/SHA256SUMS">SHA256SUMS</a>. The tool reads package and window metadata over ADB; it uninstalls only the package you confirm.</p>
+                    <p class="install-note"><strong>Verify before you run.</strong> Compare <code>sha256sum adwhere</code> with the published <a href="https://github.com/0xbitx/Adwhere/releases/latest/download/SHA256SUMS">SHA256SUMS</a>. The tool reads package and window metadata over ADB; it uninstalls only the package you confirm.</p>
                 </div>
 
                 <div class="term term-install reveal">
@@ -370,19 +369,19 @@
                     </div>
                     <div class="term-body">
                         <pre class="term-pane is-active" data-pane="download"><span class="comment"># ADWHERE v1.0.0, Linux x86-64</span>
-<span class="comment"># replace USER/REPO with your GitHub repository</span>
-<span class="prompt">$</span> curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/adwhere
+<span class="comment"># download the latest release asset</span>
+<span class="prompt">$</span> curl -fLO https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere
 <span class="prompt">$</span> chmod +x adwhere
 <span class="prompt">$</span> ./adwhere
 
 <span class="comment"># optional: verify the download</span>
-<span class="prompt">$</span> curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/SHA256SUMS
+<span class="prompt">$</span> curl -fLO https://github.com/0xbitx/Adwhere/releases/latest/download/SHA256SUMS
 <span class="prompt">$</span> sha256sum -c SHA256SUMS
 
 <span class="comment"># the bundled adb and monitor start when the phone connects</span>
 <span class="comment"># no android-tools install is required</span></pre>
                         <pre class="term-pane" data-pane="verify"><span class="comment"># compare with the published SHA256SUMS</span>
-<span class="prompt">$</span> curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/SHA256SUMS
+<span class="prompt">$</span> curl -fLO https://github.com/0xbitx/Adwhere/releases/latest/download/SHA256SUMS
 <span class="prompt">$</span> sha256sum -c SHA256SUMS
 <span class="ok">adwhere: OK</span>
 
@@ -439,7 +438,7 @@
                 <p>Download the Linux build, connect the phone and let the monitor keep the record for you.</p>
             </div>
             <div class="cta-actions">
-                <a class="btn btn-primary" href="downloads/adwhere" download>
+                <a class="btn btn-primary" href="https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere" download>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
                     Download v1.0.0
                 </a>
@@ -472,10 +471,10 @@
             </div>
             <div class="footer-col">
                 <h4>Build</h4>
-                <a href="downloads/SHA256SUMS">Checksums</a>
+                <a href="https://github.com/0xbitx/Adwhere/releases/latest/download/SHA256SUMS">Checksums</a>
                 <a href="#install">Requirements</a>
                 <a href="#privacy">Privacy</a>
-                <a href="downloads/README.md">Downloads</a>
+                <a href="https://github.com/0xbitx/Adwhere/releases">Downloads</a>
             </div>
             <div class="footer-col">
                 <h4>Project</h4>
