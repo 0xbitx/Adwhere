@@ -17,6 +17,32 @@
     <link rel="preload" href="fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/cloister-black.woff" as="font" type="font/woff" crossorigin>
     <link rel="stylesheet" href="site.css">
+    <style>
+        /* Fonts are in /fonts; these definitions make index.html self-contained. */
+        @font-face {
+            font-family: "Inter";
+            src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "JetBrains Mono";
+            src: url("fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations");
+            font-weight: 100 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Cloister Black";
+            src: url("fonts/cloister-black.woff") format("woff");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
     <script>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json">
     {
