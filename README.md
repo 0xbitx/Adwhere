@@ -73,7 +73,7 @@ Current release: **ADWHERE 1.0.0** for **Linux x86-64**.
 
 | | |
 | --- | --- |
-| **Binary** | `adwhere` |
+| **Binary** | [`adwhere`](https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere) |
 | **Version** | 1.0.0 |
 | **Platform** | Linux x86-64 ELF |
 | **Size** | 40,618,760 bytes (38.7 MiB) |
@@ -83,20 +83,20 @@ Current release: **ADWHERE 1.0.0** for **Linux x86-64**.
 
 ### Install with curl
 
+The binary is attached to the latest GitHub Release. Download it with:
+
 ```bash
-curl -fL https://raw.githubusercontent.com/USER/REPO/main/adwhere -o adwhere
+curl -fL https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere -o adwhere
 chmod +x adwhere
 ./adwhere
 ```
 
-Replace `USER/REPO` with the GitHub owner and repository that hosts the binary. These commands assume the ELF is committed at the repository root on the `main` branch.
-
 `curl -fL` is intentional: `-f` fails on an HTTP error instead of saving an error page, and `-L` follows redirects.
 
-If the binary is attached to a GitHub Release instead of committed to the repository root, use the release asset URL:
+If you also commit the ELF to the repository root, the raw URL is available as an alternative:
 
 ```bash
-curl -fL https://github.com/USER/REPO/releases/latest/download/adwhere -o adwhere
+curl -fL https://raw.githubusercontent.com/0xbitx/Adwhere/main/adwhere -o adwhere
 ```
 
 If the binary is tracked with Git LFS, the raw URL returns an LFS pointer instead of the ELF. Use the release asset URL in that case.
@@ -127,7 +127,12 @@ Expected result:
 adwhere: OK
 ```
 
-The checksum is published here because the repository distributes the binary only; there is no separate `SHA256SUMS` file to download.
+The release also includes a `SHA256SUMS` asset if you prefer the standard checksum file:
+
+```bash
+curl -fLO https://github.com/0xbitx/Adwhere/releases/latest/download/SHA256SUMS
+sha256sum -c SHA256SUMS
+```
 
 ---
 
@@ -164,7 +169,7 @@ Package names vary between distributions. Install the GTK 3 and WebKitGTK 4.1 ru
 1. **Download and verify the binary.**
 
    ```bash
-   curl -fL https://raw.githubusercontent.com/USER/REPO/main/adwhere -o adwhere
+   curl -fL https://github.com/0xbitx/Adwhere/releases/latest/download/adwhere -o adwhere
    chmod +x adwhere
    sha256sum adwhere
    ```
@@ -370,6 +375,18 @@ server: ok
 | **Monitor shows no overlays** | Keep the phone unlocked and reproduce the popup while the monitor is running. The monitor samples every 1.2 seconds. |
 | **Stale icons or scan results** | Close ADWHERE and run `rm -rf ~/.cache/adwhere`, then start it again. |
 
+### Checking the binary itself
+
+```bash
+file adwhere
+```
+
+A correct download reports a 64-bit x86-64 ELF:
+
+```text
+adwhere: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, ...
+```
+
 ---
 
 ## FAQ
@@ -399,8 +416,14 @@ No. The published binary is Linux x86-64 only.
 **Can I remove system apps?**
 No. The scan lists user-installed packages, and the UI only offers uninstall for packages from that list.
 
+**Why is the binary 40 MB?**
+It is a self-contained native build. It embeds the Python runtime, pywebview, Pillow, pure-python-adb, tabulate and Google's platform-tools `adb`, so the target machine needs no Python installation and no `android-tools` package.
+
 **Why does the binary need GTK and WebKitGTK?**
 The interface is rendered in a native desktop webview. Those libraries provide the window; the app logic and `adb` are inside the binary.
+
+**Is the source code available?**
+No. This repository distributes the compiled ELF binary only. Bug reports and false-positive reports are still welcome through the issue tracker.
 
 **Does it need an internet connection?**
 No, not after the download. All inspection happens over the local ADB connection; there is no cloud service.
@@ -415,5 +438,4 @@ Download the new `adwhere`, verify its checksum, and replace the old binary. The
 ADWHERE is a cleanup tool, not a guarantee. Adware signals can overlap with legitimate apps, and uninstalling an app deletes its local data permanently. Review the package name and the weighted reasons before confirming a removal.
 
 The software is provided as-is, without warranty of any kind. Use it at your own risk.
-
 
