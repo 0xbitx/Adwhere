@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0b0c0e">
+    <meta name="description" content="ADWHERE is a local-first Android popup-ad finder for Linux. It watches window surfaces over ADB, records the app drawing over your screen, scores the evidence and removes the package you confirm.">
+    <meta property="og:title" content="ADWHERE - Android Popup Ad Finder">
+    <meta property="og:description" content="See the app behind the ad, keep the record after the window closes, and remove it over ADB. Local-only, read-only until you confirm.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="screenshots/monitor.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>ADWHERE - Android Popup Ad Finder</title>
+    <link rel="icon" href="screenshots/logo.png" type="image/png">
+    <link rel="stylesheet" href="site.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "ADWHERE",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Linux",
+        "softwareVersion": "1.0.0",
+        "description": "A local-first Android popup-ad finder. Watches window surfaces over ADB, records the overlay app with icon and evidence, scores adware risk and removes the package you confirm.",
+        "author": {
+            "@type": "Person",
+            "name": "0xbit"
+        }
+    }
+    </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+    <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="ADWHERE home">
+            <img src="screenshots/logo.png" alt="" width="34" height="34">
+            <span class="brand-text">
+                <span class="brand-name">ADWHERE</span>
+                <span class="brand-sub">Android Ad Finder</span>
+            </span>
+        </a>
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+            <a href="#monitor">Monitor</a>
+            <a href="#detection">Detection</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#install">Install</a>
+            <a href="#privacy">Privacy</a>
+            <a class="btn btn-primary btn-sm nav-dl" href="downloads/adwhere" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                Download
+            </a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main id="main">
+    <section class="hero" aria-labelledby="heroTitle">
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> v1.0.0 &middot; Linux x86-64 &middot; ADB over USB</p>
+                <h1 id="heroTitle">Find the app<br>behind the ads.<br><span class="accent">Remove it.</span></h1>
+                <p class="hero-lead">Popup ads hide in a window that is drawn above whatever you are using. ADWHERE watches the phone's window stack over ADB, shows the app on screen and records the overlay package, icon and evidence before the ad disappears. Then it removes the package you confirm.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="downloads/adwhere" download>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        Download for Linux
+                    </a>
+                    <a class="btn btn-ghost" href="#install">Install steps</a>
+                </div>
+                <ul class="hero-meta" aria-label="Highlights">
+                    <li>Live monitor</li>
+                    <li>Local-only</li>
+                    <li>No account</li>
+                    <li>Icon + evidence trail</li>
+                </ul>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-glow" aria-hidden="true"></div>
+                <div class="term term-hero">
+                    <div class="term-bar">
+                        <span class="term-mark" aria-hidden="true"></span>
+                        <span class="term-title">ADWHERE</span>
+                        <button class="term-copy" type="button" data-copy-target="#heroCommands" aria-label="Copy the session output">Copy</button>
+                    </div>
+                    <div class="term-body" id="heroCommands">
+                        <div class="term-line comment"># connect the phone, then watch the window stack</div>
+                        <div class="term-line"><span class="prompt">$</span>adb devices</div>
+                        <div class="term-line dim">R58M41DEMO&nbsp;&nbsp;&nbsp;&nbsp;device</div>
+                        <div class="term-line"><span class="prompt">$</span>./adwhere</div>
+                        <div class="term-line ok">&#10003; monitor&nbsp;&nbsp; watching com.android.settings</div>
+                        <div class="term-line">&nbsp;&nbsp;overlay&nbsp;&nbsp; com.flashlight.superbright</div>
+                        <div class="term-line dim">&nbsp;&nbsp;above&nbsp;&nbsp;&nbsp;&nbsp; com.android.settings</div>
+                        <div class="term-line ok">&#10003; recorded&nbsp; icon &middot; v3.4.1 &middot; 2 ad SDKs &middot; risk 100</div>
+                        <div class="term-line dim">window closed &rarr; record kept<span class="cursor" aria-hidden="true"></span></div>
+                    </div>
+                </div>
+                <span class="float-chip float-chip-1">1.2s window samples</span>
+                <span class="float-chip float-chip-2">17 ad SDK families</span>
+            </div>
+        </div>
+
+        <div class="container stats" aria-label="ADWHERE at a glance">
+            <div class="stat">
+                <span class="stat-num">17</span>
+                <span class="stat-label">ad SDK families detected</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">1.2s</span>
+                <span class="stat-label">live window sample</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">200</span>
+                <span class="stat-label">recorded app events</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">0</span>
+                <span class="stat-label">bytes uploaded</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="monitor" aria-labelledby="monitorTitle">
+        <div class="container overview-grid">
+            <div class="overview-copy reveal">
+                <p class="kicker">The live monitor</p>
+                <h2 id="monitorTitle">The ad is gone. The record is not.</h2>
+                <p class="lead">The monitor reads <code>dumpsys window</code> while you use the phone. It names the foreground app, then separates every other package that is drawing above it: system alert windows, full-screen interstitials and ad-style activities.</p>
+                <p>Each foreground change and each first overlay sighting is written to the session trail with the package, activity, version, risk score, ad SDKs and the app it covered. When the popup closes, its row stays in the trail with the icon and evidence intact.</p>
+                <p>The phone is read over ADB. Nothing is installed, no screen recording is captured and no data leaves the machine. The monitor starts automatically when the device connects.</p>
+                <div class="pill-row" aria-label="Monitor capabilities">
+                    <span>Foreground app</span>
+                    <span>Icons from APKs</span>
+                    <span>Cross-app overlays</span>
+                    <span>Full-screen detection</span>
+                    <span>Recorded trail</span>
+                    <span>Overlay counts</span>
+                </div>
+            </div>
+
+            <aside class="spec-card reveal" aria-labelledby="specTitle">
+                <p class="spec-head" id="specTitle">At a glance</p>
+                <dl class="spec-list">
+                    <div><dt>Transport</dt><dd><code>USB &middot; ADB</code></dd></div>
+                    <div><dt>Scope</dt><dd>user-installed packages</dd></div>
+                    <div><dt>Popup signal</dt><dd><code>SYSTEM_ALERT_WINDOW</code></dd></div>
+                    <div><dt>Watch rate</dt><dd>one window sample / 1.2s</dd></div>
+                    <div><dt>Record</dt><dd>200 app events per session</dd></div>
+                    <div><dt>Action</dt><dd><code>pm uninstall</code>, after confirm</dd></div>
+                    <div><dt>Runtime</dt><dd>Native ELF</dd></div>
+                    <div><dt>Telemetry</dt><dd>None</dd></div>
+                </dl>
+                <p class="spec-note">The monitor starts with the session. Every record lives in memory until the device is detached; uninstalling an app never removes its trail entry.</p>
+            </aside>
+        </div>
+    </section>
+
+    <section class="section section-workbench" id="detection" aria-labelledby="detectionTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Detection</p>
+                    <h2 id="detectionTitle">Evidence, weighted and explained.</h2>
+                </div>
+                <p class="section-note">A single permission is not proof of adware. The score combines package traits, live window behaviour and code inside the APK.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card reveal">
+                    <span class="feature-num">01</span>
+                    <h3>Live window evidence</h3>
+                    <p>Cross-app overlay history, full-screen coverage, ad-style activity names, overlay window types and whether the package is drawing right now. The monitor captures the moment instead of asking you to remember it.</p>
+                    <div class="tags"><span>cross-app</span><span>full-screen</span><span>live activity</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">02</span>
+                    <h3>Package traits</h3>
+                    <p>Missing launcher entry, boot receiver, old target SDK, sideloaded installer, install-packages, phone-state and package-query permissions. Legitimate apps can match some of these; a popup ad usually matches several.</p>
+                    <div class="tags"><span>sideloaded</span><span>boot receiver</span><span>target SDK</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">03</span>
+                    <h3>APK deep scan</h3>
+                    <p>Deep scan reads <code>classes*.dex</code> straight from the installed APK and looks for 17 known ad SDK families: Google Ads, AppLovin, Unity, Pangle, Meta, Mintegral, ironSource, Vungle and more. Results are cached per package version.</p>
+                    <div class="tags"><span>17 families</span><span>classes.dex</span><span>cached</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">04</span>
+                    <h3>Explainable risk score</h3>
+                    <p>Every point has a reason and a weight. Overlay permission adds 16, stacked ad SDKs add 14, cross-app overlays add 20, and a clean APK subtracts 6. Critical, high, medium and low map to concrete evidence instead of a black-box verdict.</p>
+                    <div class="tags"><span>0-100</span><span>weighted reasons</span><span>critical / high</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">05</span>
+                    <h3>App icons</h3>
+                    <p>The icon is read from the installed APK and cached locally, so every row, detection and recorded event shows the real app mark. The monitor fetches icons for foreground and system packages too, not only the scanned list.</p>
+                    <div class="tags"><span>APK icon</span><span>96px cache</span><span>monogram fallback</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">06</span>
+                    <h3>Confirmed removal</h3>
+                    <p>Uninstall is one explicit action with a confirmation dialog. It runs <code>pm uninstall</code> for the selected user package only. The rest of the phone, its data and its system apps are untouched.</p>
+                    <div class="tags"><span>selected package</span><span>confirm dialog</span><span>pm uninstall</span></div>
+                </article>
+            </div>
+
+            <div class="feature-chips reveal" aria-label="Detection signals">
+                <span>SYSTEM_ALERT_WINDOW</span>
+                <span>INTERNET</span>
+                <span>boot receiver</span>
+                <span>no launcher</span>
+                <span>sideloaded</span>
+                <span>old target SDK</span>
+                <span>full-screen</span>
+                <span>ad activity</span>
+                <span>cross-app</span>
+                <span>REQUEST_INSTALL_PACKAGES</span>
+                <span>READ_PHONE_STATE</span>
+                <span>QUERY_ALL_PACKAGES</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="screenshots" aria-labelledby="screenshotsTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Screenshots</p>
+                    <h2 id="screenshotsTitle">See the app, keep the evidence.</h2>
+                </div>
+                <p class="section-note">Real interface, populated with a synthetic adware session for the demo.</p>
+            </div>
+
+            <div class="shot-grid">
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/monitor.png" target="_blank" rel="noopener noreferrer" title="Open the monitor screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/monitor.png" alt="ADWHERE Monitor tab showing the focused app, recorded app trail and overlay counts" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Monitor</span>
+                        <h3>Foreground app and recorded trail</h3>
+                        <p>Current app with icon and activity, plus every overlay saved with its risk and the app it covered.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/risk.png" target="_blank" rel="noopener noreferrer" title="Open the risk detail screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/risk.png" alt="App detail showing risk score 100 with weighted reasons and ad SDK chips" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">App detail</span>
+                        <h3>Explainable score</h3>
+                        <p>Each weight is visible, from cross-app overlays to ad SDKs found in the APK.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/overview.png" target="_blank" rel="noopener noreferrer" title="Open the overview screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/overview.png" alt="Overview tab with session stats, device signals and the riskiest packages" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Overview</span>
+                        <h3>Session at a glance</h3>
+                        <p>Popup-capable count, high-risk packages and the riskiest apps in the scan.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="install" aria-labelledby="installTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Install</p>
+                    <h2 id="installTitle">One binary. One USB cable.</h2>
+                </div>
+                <p class="section-note">Download the Linux build, make it executable and attach an Android phone with USB debugging enabled. No account and no Python runtime required.</p>
+            </div>
+
+            <!-- Replace USER/REPO in the curl commands with your GitHub repository. -->
+            <div class="release-card reveal" aria-labelledby="releaseTitle">
+                <div class="release-main">
+                    <p class="release-eyebrow"><span class="release-dot" aria-hidden="true"></span> Current release</p>
+                    <h3 id="releaseTitle">ADWHERE <span id="releaseVersion">1.0.0</span> <span>for Linux x86-64</span></h3>
+                    <p class="release-copy">A single native build with the live monitor, risk engine, icon cache, APK deep scanner, the original command-line helpers and its own <code>adb</code> embedded.</p>
+                    <div class="release-actions">
+                        <a class="btn btn-primary" href="downloads/adwhere" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                            Download 39 MB
+                        </a>
+                        <a class="btn btn-ghost" href="downloads/SHA256SUMS">Checksum file</a>
+                    </div>
+                    <p class="release-curl">
+                        <span>or install with curl</span>
+                        <code id="curlInstall">curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/adwhere</code>
+                        <button class="release-hash-copy" type="button" data-copy-target="#curlInstall" data-copy-label="curl command copied" aria-label="Copy the curl command">Copy</button>
+                    </p>
+                </div>
+                <dl class="release-meta">
+                    <div><dt>Version</dt><dd>1.0.0</dd></div>
+                    <div><dt>Platform</dt><dd>Linux x86-64</dd></div>
+                    <div><dt>Size</dt><dd>39 MB</dd></div>
+                    <div><dt>Format</dt><dd>ELF, executable</dd></div>
+                    <div class="release-hash-row">
+                        <dt>SHA-256</dt>
+                        <dd>
+                            <code id="releaseHash">8d9c45441a670c11b7188b513f4383833f4327cceaeaddcc2755f9d793d6ebb5</code>
+                            <button class="release-hash-copy" type="button" data-copy-target="#releaseHash" data-copy-label="Checksum copied" aria-label="Copy the SHA-256 checksum">Copy</button>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="install-grid">
+                <div class="install-steps reveal">
+                    <ol class="steps">
+                        <li>
+                            <span class="step-num">01</span>
+                            <div>
+                                <h3>Get the binary</h3>
+                                <p>Download the Linux x86-64 release above and put it somewhere on your PATH, or run it from the Downloads folder.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">02</span>
+                            <div>
+                                <h3>Enable USB debugging</h3>
+                                <p>Tap <strong>Build number</strong> seven times, open Developer options, enable <strong>USB debugging</strong>, plug the phone in and accept the <strong>Allow USB debugging?</strong> prompt. The app also has an in-window guide.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">03</span>
+                            <div>
+                                <h3>Watch, then remove</h3>
+                                <p>Press <strong>Connect</strong>. The monitor starts automatically. Use the phone normally; when an ad draws over another app, read its icon, package and evidence in the trail, then uninstall only that package.</p>
+                            </div>
+                        </li>
+                    </ol>
+                    <p class="install-note"><strong>Verify before you run.</strong> Compare <code>sha256sum adwhere</code> with the published <a href="downloads/SHA256SUMS">SHA256SUMS</a>. The tool reads package and window metadata over ADB; it uninstalls only the package you confirm.</p>
+                </div>
+
+                <div class="term term-install reveal">
+                    <div class="term-bar">
+                        <span class="term-mark" aria-hidden="true"></span>
+                        <span class="term-title">ADWHERE</span>
+                        <div class="term-tabs" role="tablist" aria-label="Install commands">
+                            <button class="term-tab is-active" type="button" role="tab" aria-selected="true" data-term="download">download</button>
+                            <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="verify">verify</button>
+                        </div>
+                        <button class="term-copy" type="button" data-copy-term aria-label="Copy the active terminal commands">Copy</button>
+                    </div>
+                    <div class="term-body">
+                        <pre class="term-pane is-active" data-pane="download"><span class="comment"># ADWHERE v1.0.0, Linux x86-64</span>
+<span class="comment"># replace USER/REPO with your GitHub repository</span>
+<span class="prompt">$</span> curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/adwhere
+<span class="prompt">$</span> chmod +x adwhere
+<span class="prompt">$</span> ./adwhere
+
+<span class="comment"># optional: verify the download</span>
+<span class="prompt">$</span> curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/SHA256SUMS
+<span class="prompt">$</span> sha256sum -c SHA256SUMS
+
+<span class="comment"># the bundled adb and monitor start when the phone connects</span>
+<span class="comment"># no android-tools install is required</span></pre>
+                        <pre class="term-pane" data-pane="verify"><span class="comment"># compare with the published SHA256SUMS</span>
+<span class="prompt">$</span> curl -fLO https://raw.githubusercontent.com/USER/REPO/main/downloads/SHA256SUMS
+<span class="prompt">$</span> sha256sum -c SHA256SUMS
+<span class="ok">adwhere: OK</span>
+
+<span class="comment"># or check the hash directly</span>
+<span class="prompt">$</span> sha256sum adwhere</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="req-grid reveal" aria-label="Requirements">
+                <div><span>Platform</span><strong>Linux x86-64</strong></div>
+                <div><span>Runtime</span><strong>Native ELF, Python embedded</strong></div>
+                <div><span>Desktop</span><strong>X11 or Wayland</strong></div>
+                <div><span>Phone</span><strong>Android 8+ with USB debugging</strong></div>
+                <div><span>Transport</span><strong>ADB over USB</strong></div>
+                <div><span>Network</span><strong>None required</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="privacy" aria-labelledby="privacyTitle">
+        <div class="container privacy-grid">
+            <div class="privacy-copy reveal">
+                <p class="kicker">Privacy and safety</p>
+                <h2 id="privacyTitle">Local by design. Explicit by action.</h2>
+                <p class="lead">The app talks to the local ADB server and the attached phone. It has no account system, no analytics, no cloud backend and no telemetry.</p>
+                <p>Package metadata and window dumps stay in the desktop process. Icons and deep-scan results are cached under <code>~/.cache/adwhere</code> on this machine. Nothing is uploaded and no screen is recorded.</p>
+                <p>The monitor is read-only. It reads the window list, package dumps and APK bytes. The only write action is the uninstall you explicitly confirm, which runs <code>pm uninstall</code> for one selected user package.</p>
+                <p class="guardrails"><strong>Before you remove anything:</strong> adware signals can overlap with accessibility, automation and launcher apps you rely on. Read the package name and the weighted reasons first. Uninstall deletes the app and its local data permanently.</p>
+            </div>
+            <div class="privacy-cards">
+                <article class="privacy-card reveal">
+                    <h3>No network</h3>
+                    <p>The UI and ADB bridge do not call a remote service. Deep scan reads the APK already installed on the phone.</p>
+                </article>
+                <article class="privacy-card reveal">
+                    <h3>No recording</h3>
+                    <p>The monitor samples window metadata; it does not capture pixels, audio, notifications or keystrokes.</p>
+                </article>
+                <article class="privacy-card reveal">
+                    <h3>You confirm removal</h3>
+                    <p>A dialog names the package before <code>pm uninstall</code> runs. Cancelling leaves the device untouched.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container cta-inner reveal">
+            <img src="screenshots/logo.png" alt="" width="46" height="46">
+            <div class="cta-copy">
+                <p class="kicker">Stop guessing</p>
+                <h2>Catch the overlay while it is on screen.</h2>
+                <p>Download the Linux build, connect the phone and let the monitor keep the record for you.</p>
+            </div>
+            <div class="cta-actions">
+                <a class="btn btn-primary" href="downloads/adwhere" download>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                    Download v1.0.0
+                </a>
+                <span class="cta-note">Linux x86-64 &middot; local only</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="brand" href="#top" aria-label="ADWHERE home">
+                    <img src="screenshots/logo.png" alt="" width="32" height="32">
+                    <span class="brand-text">
+                        <span class="brand-name">ADWHERE</span>
+                        <span class="brand-sub">Android Ad Finder</span>
+                    </span>
+                </a>
+                <p>Android popup-ad finder with a live window monitor, recorded evidence and an explained risk score. Local-first and read-only until you confirm.</p>
+                <p class="footer-warn">Removal is permanent. Read the package name and evidence before uninstalling anything.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#monitor">Live monitor</a>
+                <a href="#detection">Detection</a>
+                <a href="#screenshots">Screenshots</a>
+                <a href="#install">Download</a>
+            </div>
+            <div class="footer-col">
+                <h4>Build</h4>
+                <a href="downloads/SHA256SUMS">Checksums</a>
+                <a href="#install">Requirements</a>
+                <a href="#privacy">Privacy</a>
+                <a href="downloads/README.md">Downloads</a>
+            </div>
+            <div class="footer-col">
+                <h4>Project</h4>
+                <a href="#top">Overview</a>
+                <a href="#install">Source install</a>
+                <a href="#privacy">Safety notes</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; <span id="year">2026</span> ADWHERE &middot; Coded by 0xbit</span>
+            <span>v1.0.0 &middot; Linux x86-64 &middot; local only</span>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
