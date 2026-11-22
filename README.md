@@ -10,10 +10,6 @@ ADWHERE connects to an Android phone over USB, shows which user-installed apps c
 ![Binary only](https://img.shields.io/badge/distribution-ELF%20only-important)
 ![Root](https://img.shields.io/badge/root-not%20required-success)
 
-> **Binary-only repository.** This repository publishes the compiled Linux x86-64 ELF and this README. There is no source code, no Python installation, no build step, no account, no telemetry, and no cloud service.
-
-<!-- Publishing note: replace USER/REPO in the curl URLs with your GitHub owner and repository. -->
-
 ---
 
 ## Contents
@@ -28,8 +24,6 @@ ADWHERE connects to an Android phone over USB, shows which user-installed apps c
 - [Bundled ADB and cache](#bundled-adb-and-cache)
 - [Troubleshooting](#troubleshooting)
 - [FAQ](#faq)
-- [Repository layout](#repository-layout)
-- [Release notes](#release-notes)
 - [Disclaimer](#disclaimer)
 
 ---
@@ -376,18 +370,6 @@ server: ok
 | **Monitor shows no overlays** | Keep the phone unlocked and reproduce the popup while the monitor is running. The monitor samples every 1.2 seconds. |
 | **Stale icons or scan results** | Close ADWHERE and run `rm -rf ~/.cache/adwhere`, then start it again. |
 
-### Checking the binary itself
-
-```bash
-file adwhere
-```
-
-A correct download reports a 64-bit x86-64 ELF:
-
-```text
-adwhere: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, ...
-```
-
 ---
 
 ## FAQ
@@ -417,47 +399,14 @@ No. The published binary is Linux x86-64 only.
 **Can I remove system apps?**
 No. The scan lists user-installed packages, and the UI only offers uninstall for packages from that list.
 
-**Why is the binary 40 MB?**
-It is a self-contained native build. It embeds the Python runtime, pywebview, Pillow, pure-python-adb, tabulate and Google's platform-tools `adb`, so the target machine needs no Python installation and no `android-tools` package.
-
 **Why does the binary need GTK and WebKitGTK?**
 The interface is rendered in a native desktop webview. Those libraries provide the window; the app logic and `adb` are inside the binary.
-
-**Is the source code available?**
-No. This repository distributes the compiled ELF binary only. Bug reports and false-positive reports are still welcome through the issue tracker.
 
 **Does it need an internet connection?**
 No, not after the download. All inspection happens over the local ADB connection; there is no cloud service.
 
 **How do I update ADWHERE?**
 Download the new `adwhere`, verify its checksum, and replace the old binary. The cache under `~/.cache/adwhere` can stay; remove it if you want a clean scan.
-
----
-
-## Repository layout
-
-```text
-adwhere      # Linux x86-64 ELF binary
-README.md    # this file
-```
-
-The repository is binary-only. Source code, build scripts, Python files and dependency manifests are not published here.
-
-If you publish the binary as a GitHub Release instead of committing it to the repository root, keep the release asset name `adwhere` so the download URLs in this README continue to work.
-
----
-
-## Release notes
-
-### 1.0.0
-
-- First public Linux x86-64 binary release.
-- Bundled Google platform-tools `adb`; no `android-tools` install required.
-- User-app scan with icons, versions, installers, permissions and weighted risk scores.
-- Live overlay monitor with a 200-event session trail.
-- Deep scan for 17 ad SDK families, cached per package version.
-- Explicit, confirmation-gated uninstall for one package at a time.
-- Native GTK 3 / WebKitGTK 4.1 interface.
 
 ---
 
